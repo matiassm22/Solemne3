@@ -1,18 +1,28 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { Search, ArrowRight, Mail, BarChart3, AlertTriangle, Leaf } from "lucide-react";
-import { plantsData } from "../data";
+import { fetchPlants, Planta } from "../api";
 import { MaterialCard } from "../components/MaterialCard";
+import { plantsData } from "../data";
 
 export function Home() {
+  const [plants, setPlants] = useState<Planta[]>(plantsData);
+
   useEffect(() => {
     document.title = "Inicio | Huerto Medicinal CESFAM";
+    fetchPlants()
+      .then(data => {
+        setPlants(data);
+      })
+      .catch(err => {
+        console.error("Error al obtener plantas de la API en Home, usando fallback:", err);
+      });
   }, []);
 
-  const totalPlantas = plantsData.length;
-  const plantasCriticas = plantsData.filter(p => p.estado === 'Crítico').length;
-  const totalStock = plantsData.reduce((acc, curr) => acc + (curr.cantidad || 0), 0);
-  const featuredPlants = plantsData.slice(0, 3);
+  const totalPlantas = plants.length;
+  const plantasCriticas = plants.filter(p => p.estado === 'Crítico').length;
+  const totalStock = plants.reduce((acc, curr) => acc + (curr.cantidad || 0), 0);
+  const featuredPlants = plants.slice(0, 3);
 
   return (
     <div className="space-y-12 pb-8">
