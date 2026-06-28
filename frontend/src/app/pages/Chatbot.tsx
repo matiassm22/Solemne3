@@ -32,7 +32,7 @@ export function Chatbot() {
       
       const containsAny = (keywords: string[]) => keywords.some(kw => lowerInput.includes(kw));
 
-      if (containsAny(["estomago", "estómago", "guata", "digestiv", "colon", "acidez", "gases", "carminativ", "digestión", "digestion", "pesadez", "colico", "cólico", "higado", "hígado"])) {
+      if (containsAny(["estomago", "estómago", "guata", "digestiv", "colon", "acidez", "gases", "carminativ", "digestión", "digestion", "pesadez", "colico", "cólico"])) {
         botResponse = "Para problemas digestivos o molestias estomacales, te sugiero consultar en nuestro catálogo sobre:\n\n" +
           "• Menta: Excelente antiespasmódica y digestiva ideal para después de comer.\n" +
           "• Hinojo: Ayuda a combatir la acumulación de gases y digestiones pesadas.\n" +
@@ -66,6 +66,34 @@ export function Chatbot() {
           "• Limpia Plata (Cola de Caballo): Excelente diurético y remineralizante rico en silicio.\n" +
           "• Diente de León: Estimula el correcto funcionamiento renal y hepático de forma natural.\n" +
           "• Romero: Actúa como antioxidante, estimulante circulatorio y diurético suave.";
+      } else if (containsAny(["presion", "presión", "hipertension", "hipertensión", "circulacion", "circulación", "sangre", "varices", "corazon", "corazón", "colesterol"])) {
+        botResponse = "Para regular la presión arterial, mejorar la circulación o el colesterol, tenemos en el catálogo:\n\n" +
+          "• Ajo: Un potente antihipertensivo, hipolipemiante (colesterol) y anticoagulante natural.\n" +
+          "• Cebolla: Posee propiedades anticoagulantes e hipotensoras que benefician al corazón.\n" +
+          "• Ruda: Tradicionalmente utilizada por sus propiedades circulatorias y espasmolíticas.\n" +
+          "• Romero: Estimula la circulación periférica y actúa como un fuerte antioxidante protector.";
+      } else if (containsAny(["fiebre", "temperatura", "calentura", "sudor", "transpirar"])) {
+        botResponse = "Para regular la temperatura corporal y combatir estados febriles, te recomendamos:\n\n" +
+          "• Borraja: Excelente sudorífica que ayuda a regular la temperatura en cuadros respiratorios.\n" +
+          "• Artemisa: Posee propiedades antipiréticas tradicionales para aliviar la fiebre.";
+      } else if (containsAny(["estrenimiento", "estreñimiento", "laxante", "ir al baño", "transito lento", "tránsito lento"])) {
+        botResponse = "Para regular el tránsito intestinal y aliviar el estreñimiento, te sugiero consultar sobre:\n\n" +
+          "• Aloe Vera: El acíbar (zumo de las hojas) posee fuertes propiedades laxantes y purgantes.\n" +
+          "• Llantén: Sus semillas y hojas actúan como emolientes y laxantes suaves ricos en mucílagos.";
+      } else if (containsAny(["menstruacion", "menstruación", "regla", "dolor menstrual", "colico menstrual", "cólico menstrual", "utero", "útero"])) {
+        botResponse = "Para regular el ciclo menstrual o aliviar cólicos menstruales, te sugiero buscar:\n\n" +
+          "• Artemisa: Reconocida tradicionalmente como reguladora del ciclo menstrual.\n" +
+          "• Manzanilla: Posee fuertes propiedades antiespasmódicas que ayudan a mitigar dolores menstruales.\n" +
+          "• Ruda: Utilizada externamente e internamente (con precaución) para regular flujos y calmar dolores.";
+      } else if (containsAny(["defensas", "inmun", "inmunidad", "fortalecer", "debil", "débil", "vitamina", "anemia"])) {
+        botResponse = "Para fortalecer el sistema inmunológico, las defensas o recomponer el organismo de debilidades, te recomendamos:\n\n" +
+          "• Uña de Gato: Potente inmunoregulador y antioxidante sistémico que refuerza las defensas.\n" +
+          "• Ortiga: Gran reconstituyente mineralizador y vitamínico, tradicional contra la fatiga y la anemia.";
+      } else if (containsAny(["higado", "hígado", "vesicula", "vesícula", "bilis", "vesicular", "hepat"])) {
+        botResponse = "Para el correcto cuidado del hígado o la vesícula biliar, te aconsejo consultar en el catálogo:\n\n" +
+          "• Diente de León: Conocido hepatoprotector y depurativo que estimula el funcionamiento biliar.\n" +
+          "• Romero: Posee propiedades colagogas y coleréticas que activan la producción y vaciado de bilis.\n" +
+          "• Menta o Toronjil Cuyano: Estimulan la digestión biliar y previenen cólicos hepáticos.";
       } else if (containsAny(["horario", "ubicacion", "ubicación", "donde", "dónde", "abierto", "cesfam", "direccion", "dirección"])) {
         botResponse = "El Huerto Medicinal Comunitario está ubicado en el patio central del CESFAM Las Condes.\n\n" +
           "• Horario de atención: Lunes a viernes de 08:00 a 17:00 hrs.\n" +
