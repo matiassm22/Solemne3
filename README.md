@@ -34,10 +34,33 @@ raiz/
 
 ---
 
-## Requisitos Previos
+### Requisitos Previos e Instalación
 
-* **Python 3.11** o superior.
-* **Node.js 18** o superior y npm.
+Para ejecutar este proyecto de forma local, necesitas tener instalado lo siguiente:
+
+### 1. Python (Para el Backend en Django)
+* **Descarga**: Descarga el instalador oficial de [Python 3.11 o superior](https://www.python.org/downloads/).
+* **IMPORTANTE (Windows)**: Durante la instalación, asegúrate de marcar la casilla **"Add Python to PATH"** en la primera ventana del asistente. Si omites este paso, tu sistema no reconocerá los comandos `python` o `pip` y redirigirá erróneamente a la tienda de Windows.
+* **Verificación**: Abre una nueva terminal y escribe:
+  ```bash
+  python --version
+  ```
+  *(Debe mostrar la versión instalada de Python).*
+
+### 2. Node.js (Para el Frontend en React)
+* **Descarga**: Descarga e instala [Node.js 18 o superior](https://nodejs.org/) (se recomienda la versión LTS).
+* **Verificación**: Confirma la instalación en tu terminal ejecutando:
+  ```bash
+  node -v
+  npm -v
+  ```
+
+### 3. Habilitación de Scripts (Solo si utilizas PowerShell en Windows)
+Por defecto, Windows tiene deshabilitada la ejecución de scripts locales en PowerShell. Para poder activar el entorno virtual (`.ps1`) en esa terminal, abre PowerShell y ejecuta el siguiente comando:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+```
+*(Esto habilitará la ejecución de scripts únicamente en la ventana de terminal actual, de forma segura sin alterar permanentemente las políticas de tu sistema).*
 
 ---
 
@@ -56,26 +79,64 @@ Para garantizar la compatibilidad con los requerimientos estipulados por el prof
 
 ---
 
-## Instrucciones de Lanzamiento y Ejecución (gitbash)(powershell)
+## Instrucciones de Lanzamiento y Ejecución
 
 ### 1. Servidor Backend (Django API REST)
-Navega a la carpeta `/backend/` e inicia el entorno virtual y el servidor local:
+
+Navega a la carpeta `/backend/` en tu terminal preferida y ejecuta los comandos correspondientes:
+
+#### Opción A: Git Bash (MINGW64)
 ```bash
 cd backend
 
-# Activar el entorno virtual (Windows PowerShell)
-.\venv\Scripts\Activate.ps1
+# 1. Activar el entorno virtual en Git Bash
+source venv/Scripts/activate
 
-# Instalar dependencias
+# 2. Instalar dependencias
 pip install -r requirements.txt
 
-# Aplicar migraciones y seed de datos si se requiere reiniciar la DB
+# 3. Aplicar migraciones y seed de datos
 python manage.py migrate
 python manage.py seed_data
 
-# Iniciar servidor local
+# 4. Iniciar el servidor local
 python manage.py runserver
 ```
+
+#### Opción B: Windows PowerShell
+*(Si las políticas de seguridad de Windows bloquean la activación de scripts .ps1, puedes llamar a Python directamente)*
+```powershell
+cd backend
+
+# 1. Instalar dependencias
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+
+# 2. Aplicar migraciones y seed de datos
+.\venv\Scripts\python.exe manage.py migrate
+.\venv\Scripts\python.exe manage.py seed_data
+
+# 3. Iniciar el servidor local
+.\venv\Scripts\python.exe manage.py runserver
+```
+
+#### Opción C: Símbolo del Sistema (CMD)
+```cmd
+cd backend
+
+# 1. Activar el entorno virtual
+call venv\Scripts\activate.bat
+
+# 2. Instalar dependencias
+pip install -r requirements.txt
+
+# 3. Aplicar migraciones y seed de datos
+python manage.py migrate
+python manage.py seed_data
+
+# 4. Iniciar el servidor local
+python manage.py runserver
+```
+
 La API REST estará corriendo y disponible en `http://localhost:8000/api/`.
 
 ### 2. Servidor Frontend (React SPA)
@@ -98,4 +159,3 @@ La aplicación web estará disponible en `http://localhost:5173`.
 * **Usuario:** `admin`
 * **Contraseña:** `admin`
 
-*Utiliza estas credenciales en la sección **Admin** del menú para acceder al CRUD de gestión de inventario y visualización de mensajes.*
